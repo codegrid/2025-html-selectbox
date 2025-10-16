@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>セレクトボックスのカスタムになるベース</title>
+  <style>
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+  </style>
+</head>
+<body>
+
+<label for="fruit">好きな果物を選んでください</label>
+<select id="fruit" name="fruit">
+  <button>
+    <selectedcontent></selectedcontent>
+  </button>
+  <option value="apple">りんご</option>
+  <option value="orange">みかん</option>
+  <option value="banana">バナナ</option>
+</select>
+
+</body>
+</html>

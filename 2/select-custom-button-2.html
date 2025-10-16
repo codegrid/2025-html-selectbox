@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カスタマイズされたセレクトボックスのボタン</title>
+  <style>
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    border-width: 2px;
+    border-color: slategrey;
+    background-color: cadetblue;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
+  }
+
+  select:hover {
+    border-color: darkslategray;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));
+  }
+
+  select:focus {
+    outline-offset: 2px;
+    outline: 2px solid dodgerblue;
+  }
+
+  select > button:first-child {
+    display: flex;
+    color: #555;
+  }
+
+  selectedcontent {
+    color: #222;
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+
+<label for="fruit">好きな果物を選んでください</label>
+<select id="fruit" name="fruit">
+  <button>
+    選択された果物：<selectedcontent></selectedcontent>
+  </button>
+  <option value="apple">りんご</option>
+  <option value="orange">みかん</option>
+  <option value="banana">バナナ</option>
+</select>
+
+</body>
+</html>
