@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ドロップダウンのカスタム 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    display: inline-flex;
+    align-items: center;
+    border-width: 2px;
+    border-color: slategrey;
+    background-color: cadetblue;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
+  }
+
+  select:hover {
+    border-color: darkslategray;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));
+  }
+
+  select:focus {
+    outline-offset: 2px;
+    outline: 2px solid dodgerblue;
+  }
+
+  select::picker-icon {
+    width: 18px;
+    height: 18px;
+    content: url("./image/arrow-down.svg");
+    transition-property: rotate;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+  }
+
+  select:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  select > button:first-child {
+    display: flex;
+    color: #555;
+  }
+
+  ::picker(select) {
+    position: relative;
+    top: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: slategrey;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    translate: 0 -10px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-behavior: allow-discrete;
+  }
+
+  ::picker(select):popover-open {
+    opacity: 1;
+    translate: 0 0;
+    transition-duration: 0.4s;
+  }
+
+  @starting-style {
+    ::picker(select):popover-open {
+      opacity: 0;
+      translate: 0 -10px;
+    }
+  }
+
+  option {
+    display: grid;
+    grid-template:
+      "check icon name stock" auto
+      "check icon name-en stock" auto
+    /  1.5em 1em 1fr auto;
+    column-gap: 0.5em;
+    row-gap: 0;
+    padding-block: 0.2em;
+    line-height: 1.2;
+  }
+
+  option:checked {
+    background-color: #cdeaef;
+  }
+
+  option::checkmark {
+    grid-area: check;
+    content: "✅"
+  }
+
+  .icon {
+    grid-area: icon;
+  }
+
+  .name {
+    grid-area: name;
+    font-weight: bold;
+  }
+
+  .name-en {
+    grid-area: name-en;
+    font-size: 0.75em;
+    opacity: 0.75;
+  }
+
+  .stock {
+    grid-area: stock;
+    white-space: nowrap;
+  }
+
+  selectedcontent {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25em;
+    line-height: 1;
+  }
+
+  selectedcontent .name-en,
+  selectedcontent .stock {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+
+<label for="fruit">好きな果物を選んでください</label>
+<select id="fruit" name="fruit">
+  <button>
+    選択された果物：<selectedcontent></selectedcontent>
+  </button>
+  <option value="apple">
+    <span class="icon">🍎</span>
+    <span class="name">りんご</span>
+    <span class="name-en">Apple</span>
+    <span class="stock">在庫○</span>
+  </option>
+  <option value="orange">
+    <span class="icon">🍊</span>
+    <span class="name">みかん</span>
+    <span class="name-en">Orange</span>
+    <span class="stock">在庫△</span>
+  </option>
+  <option value="banana">
+    <span class="icon">🍌</span>
+    <span class="name">バナナ</span>
+    <span class="name-en">Banana</span>
+    <span class="stock">在庫○</span>
+  </option>
+</select>
+
+</body>
+</html>
